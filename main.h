@@ -24,3 +24,6 @@
  */
 
 #include <iostream>
+#include <fstream>
+
+#include "BinarySearchTree.h"

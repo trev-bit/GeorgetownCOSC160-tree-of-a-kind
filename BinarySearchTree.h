@@ -26,5 +26,10 @@ public:
 
     void insert( int data ) { root = spotScout( root, data ); }
 
+    void printTree( BinarySearchTree tree )
+    {
+        
+    }
+
     
 };
