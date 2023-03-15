@@ -29,7 +29,11 @@ int main( int argc, const char* argv[] )
     }
   }
 
-  
+  bstNode* point = bst;
+
+  bst.printOrderTree();
+
+
 
   return 0;
 }

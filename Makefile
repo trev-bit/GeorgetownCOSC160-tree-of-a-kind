@@ -16,6 +16,5 @@ submit:
 	rm -f $(SUBMIT_NAME).zip
 	zip $(SUBMIT_NAME).zip Makefile $(DRIVER_NAME).cpp $(DRIVER_NAME).h BinarySearchTree.cpp BinarySearchTree.h
 		
-
 clean:
 	rm -f p3 a.out *.o

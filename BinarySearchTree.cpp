@@ -1,23 +1,48 @@
 #include "BinarySearchTree.h"
 
-bstNode* BinarySearchTree::spotScout( bstNode *node, int data )
+
+BinarySearchTree::BinarySearchTree()
 {
+    root = NULL;
+
+    bstNode* newNode = new bstNode;
+    newNode->data = NULL;
+    newNode->left = NULL;
+    newNode->right = NULL;
+}
+
+
+bstNode* BinarySearchTree::insert( int data )
+{
+    bstNode* newNode = new bstNode;
+    bstNode* peekNode = root;
     // creates a node if BST is empty
-    if( node == NULL )
+    if( peekNode == NULL )
     {
-        node = new bstNode;
-        node->data = data;
-        node->left = NULL;
-        node->right = NULL;
+        newNode->data = data;
+        newNode->left = NULL;
+        newNode->right = NULL;
     }
-    else if( data < node->data )
+    else if( data < peekNode->data )
     {
-        node->left = spotScout(node->left, data);
+        peekNode->left = insert(data);
     }
-    else if ( data > node->data ) 
+    else if( data > peekNode->data ) 
     {
-        node->right = spotScout(node->right, data);
+        peekNode->right = insert(data);
     }
 
-    return node;
+    return newNode;
 }
+
+
+bstNode* BinarySearchTree::printOrderTree( bstNode* here )
+{
+    if ( here != nullptr ) 
+    {
+        printOrderTree(here->left);
+        cout << here->data << " ";
+        printOrderTree(here->right);
+    }
+}
+
