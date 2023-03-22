@@ -1,48 +1,165 @@
 #include "BinarySearchTree.h"
 
 
+bstNode* BinarySearchTree::insert( bstNode* node, int data )
+{  
+    if ( !node )
+    {
+        return new bstNode(data);
+    } 
+
+// break in IF statements for clarity       
+
+    if ( data > node->data )
+    {
+        node->right = insert(node->right, data);
+    }
+    else if( data < node->data )
+    {
+        node->left = insert(node->left, data);
+    }
+    return node;
+}
+
+
+bstNode* BinarySearchTree::findMinNode( bstNode* min )
+{
+    while( min->left )
+    {
+        min = min->left;
+    }
+
+    return min;
+}
+
+
+bstNode* BinarySearchTree::deleteNode( bstNode *node, int data )
+{
+    if( !node )
+    {
+        return nullptr;
+    }
+
+// IF break for clarity
+
+    if( data < node->data )
+    {
+        node->left = deleteNode(node->left, data);
+    }    
+    else if( data > node->data )
+    {
+        node->right = deleteNode(node->right, data);
+    }
+    else
+    {
+        if( !node->left )
+        {
+            bstNode* temp = node->right;
+            delete node;
+
+            return temp;
+        }
+        else if( !node->right )
+        {
+            bstNode* temp = node->left;
+            delete node;
+
+            return temp;
+        }
+
+        bstNode* temp = findMinNode(node->right);
+        node->data = temp->data;
+        node->right = deleteNode(node->right, temp->data);
+    }
+
+    return node;
+}
+
+
+// end of public member function implementation
+// begining of private member function implementation
+
+
 BinarySearchTree::BinarySearchTree()
 {
     root = NULL;
-
-    bstNode* newNode = new bstNode;
-    newNode->data = NULL;
-    newNode->left = NULL;
-    newNode->right = NULL;
+    traversalCount = 0;
 }
 
 
 bstNode* BinarySearchTree::insert( int data )
 {
-    bstNode* newNode = new bstNode;
-    bstNode* peekNode = root;
-    // creates a node if BST is empty
-    if( peekNode == NULL )
-    {
-        newNode->data = data;
-        newNode->left = NULL;
-        newNode->right = NULL;
-    }
-    else if( data < peekNode->data )
-    {
-        peekNode->left = insert(data);
-    }
-    else if( data > peekNode->data ) 
-    {
-        peekNode->right = insert(data);
-    }
-
-    return newNode;
+    bstNode* rootInsert = new bstNode(data);
+    root = insert(root, data);
+    return root;
 }
 
 
-bstNode* BinarySearchTree::printOrderTree( bstNode* here )
+bool BinarySearchTree::search( int data )
 {
-    if ( here != nullptr ) 
+    bstNode* node = root;
+
+    while( node )
     {
-        printOrderTree(here->left);
-        cout << here->data << " ";
-        printOrderTree(here->right);
+        if( data == node->data )
+        {
+            return true;
+        }
+        else if( data < node->data )
+        {
+            node = node->left;
+        }
+        else
+        {
+            node = node->right;
+        }
+    }
+
+    return false;
+}
+
+
+bstNode* BinarySearchTree::deleteNode( int data )
+{
+    root = deleteNode( root, data );
+    return root;
+}
+
+
+void BinarySearchTree::printPreorder( bstNode* node )
+{
+    if( !node )
+    {
+        return;
+    }
+    else
+    {
+        cout << "[";
+        cout << node->data << " ";
+        printPreorder(node->left);
+        printPreorder(node->right);
+        cout << "]";
     }
 }
+
+
+void BinarySearchTree::printTree()
+{
+    printPreorder(root);
+}
+
+
+void BinarySearchTree::orderedPrint( bstNode* parent )
+{
+    if( parent )
+    {
+        orderedPrint(parent->left);
+
+        cout << parent->data << " ";
+
+        orderedPrint(parent->right);
+  
+    }
+}
+
 

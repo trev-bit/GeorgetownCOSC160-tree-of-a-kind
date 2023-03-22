@@ -11,19 +11,39 @@ struct bstNode
     int data;
     bstNode* left;
     bstNode* right;
+
+    bstNode(int x) : data(x), left(NULL), right(NULL) {}
 };
 
 class BinarySearchTree
 {
 private:
     bstNode* root;
-
-public:
-    BinarySearchTree(); 
+    int traversalCount;
 
     bstNode* insert( int data );
 
-    bstNode* printOrderTree( bstNode* here );
+    bstNode* findMinNode( bstNode* node );
+
+    bstNode* deleteNode( bstNode* node, int data );
+// 
+
+public:
+    BinarySearchTree();
+
+    int getTraversalCount() { return traversalCount; } 
+
+    bstNode* insert(bstNode *node, int data);
+
+    bool search( int data );
+
+    bstNode* deleteNode( int data );
+
+    void printPreorder( bstNode* node );
+
+    void printTree();
+
+    void orderedPrint( bstNode* here );
     
 };
 

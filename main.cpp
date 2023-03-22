@@ -6,7 +6,7 @@ int main( int argc, const char* argv[] )
 {
   string inputFile;
 
-  inputFile = argv[1];
+  //inputFile = argv[1];
 
   string dummyplugFile = "p3_test0.txt";
 
@@ -25,14 +25,13 @@ int main( int argc, const char* argv[] )
     }
     else
     {
-      bst.insert(value);
+      bstNode* fill = new bstNode(value);
+      bst.insert(fill, value);
+      // cout << "MAIN UNIT TESTING - VALUE INSERTED: " << fill->data << endl;
     }
   }
 
-  bstNode* point = bst;
-
-  bst.printOrderTree();
-
+  bst.printTree();
 
 
   return 0;
