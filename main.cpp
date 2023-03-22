@@ -33,8 +33,18 @@ int main( int argc, const char* argv[] )
   bstNode* mainRoot = bst.getRoot();
 
   bst.printPreorder(mainRoot);
+  cout << endl;
+  cout << endl;
+  
+  bst.deleteNode(13);
+  bst.insert(13);
 
-  cout << "UNIT TESTING - BOOL PRESENCE OF #13 = " << bst.search(13);
+  cout << "UNIT TESTING - TREE OUT AFTER #13 DELETION & RE-INSERTION: " << endl;
+  cout << endl;
+
+  bst.printPreorder(mainRoot);
+  cout << endl;
+  cout << endl;
 
   return 0;
 }

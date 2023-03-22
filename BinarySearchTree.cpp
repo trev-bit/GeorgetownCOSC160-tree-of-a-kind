@@ -106,6 +106,7 @@ void BinarySearchTree::insert( int data )
     {
         root->right = insert(root->right, data);
     }
+    //
 }
 
 
@@ -149,17 +150,19 @@ void BinarySearchTree::printPreorder( bstNode* node )
     else
     {
         cout << "[";
-        cout << node->data << " ";
+        cout << node->data;
         printPreorder(node->left);
         printPreorder(node->right);
         cout << "]";
     }
+    //
 }
 
 
 void BinarySearchTree::printTree()
 {
     printPreorder(root);
+    //
 }
 
 
@@ -174,6 +177,7 @@ void BinarySearchTree::orderedPrint( bstNode* parent )
         orderedPrint(parent->right);
   
     }
+    //
 }
 
 
