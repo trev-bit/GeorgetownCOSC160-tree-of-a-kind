@@ -3,21 +3,24 @@
 
 bstNode* BinarySearchTree::insert( bstNode* node, int data )
 {  
-    if ( !node )
+    if ( node == NULL )
     {
-        return new bstNode(data);
+        bstNode* newNode = new bstNode(data);
+        newNode->depth = newNode->depth + 1;
+        return newNode;
     } 
-
-// break in IF statements for clarity       
 
     if ( data > node->data )
     {
+        node->depth = node->depth + 1;
         node->right = insert(node->right, data);
     }
     else if( data < node->data )
     {
+        node->depth = node->depth + 1;
         node->left = insert(node->left, data);
     }
+
     return node;
 }
 
@@ -87,11 +90,22 @@ BinarySearchTree::BinarySearchTree()
 }
 
 
-bstNode* BinarySearchTree::insert( int data )
+void BinarySearchTree::insert( int data )
 {
-    bstNode* rootInsert = new bstNode(data);
-    root = insert(root, data);
-    return root;
+    bstNode* node = new bstNode(data);
+
+    if( root == NULL )
+    {
+        root = node;
+    }
+    else if( data < root->data )
+    {
+        root->left = insert(root->left, data);
+    }
+    else if( data > root->data )
+    {
+        root->right = insert(root->right, data);
+    }
 }
 
 

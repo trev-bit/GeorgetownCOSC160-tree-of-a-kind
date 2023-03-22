@@ -25,14 +25,16 @@ int main( int argc, const char* argv[] )
     }
     else
     {
-      bstNode* fill = new bstNode(value);
-      bst.insert(fill, value);
+      bst.insert(value);
       // cout << "MAIN UNIT TESTING - VALUE INSERTED: " << fill->data << endl;
     }
   }
 
-  bst.printTree();
+  bstNode* mainRoot = bst.getRoot();
 
+  bst.printPreorder(mainRoot);
+
+  cout << "UNIT TESTING - BOOL PRESENCE OF #13 = " << bst.search(13);
 
   return 0;
 }
