@@ -1,3 +1,4 @@
+#include <string>
 #include <iostream>
 #include <fstream>
 #include <vector>
@@ -10,6 +11,7 @@ struct bstNode
 {
     int data;
     int depth;
+
     bstNode* left;
     bstNode* right;
 
@@ -22,30 +24,21 @@ private:
     bstNode* root;
     int traversalCount;
 
-
-
+    bstNode* insert( bstNode* node, int data );
     bstNode* findMinNode( bstNode* node );
-
     bstNode* deleteNode( bstNode* node, int data );
-// 
+    // 
 
 public:
     BinarySearchTree();
-
-    int getTraversalCount() { return traversalCount; } 
     bstNode* getRoot() { return root; }
+    int getTraversalCount() { return traversalCount; } 
 
-    bstNode* insert( bstNode* node, int data );
     void insert( int data );
-
     bool search( int data );
-
     bstNode* deleteNode( int data );
 
     void printPreorder( bstNode* node );
-
-    void printTree();
-
     void orderedPrint( bstNode* here );
-    
+    //
 };

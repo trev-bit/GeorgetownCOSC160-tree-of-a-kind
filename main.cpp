@@ -9,6 +9,7 @@ int main( int argc, const char* argv[] )
   //inputFile = argv[1];
 
   string dummyplugFile = "p3_test4.txt";
+  string line;
 
   BinarySearchTree bst;
 
@@ -19,32 +20,26 @@ int main( int argc, const char* argv[] )
 
   while( portal1 >> value )
   {
-    if( portal1.peek() == '$' )
-    {
-      portal1.ignore();
-    }
-    else
-    {
-      bst.insert(value);
-      // cout << "MAIN UNIT TESTING - VALUE INSERTED: " << fill->data << endl;
-    }
+    cout << value << endl;
+    bst.insert(value);
   }
+
+  
+
+  while( portal1 >> value )
+  {
+    cout << "TARGET = " << value << ", FOUND = " << bst.search(value) << endl;
+  }
+  
+  cout << "FIRST STATE - BINARY SEARCH TREE STRUCTURE OUTPUT: " << endl;
+  cout << endl;
 
   bstNode* mainRoot = bst.getRoot();
   bst.printPreorder(mainRoot);
   cout << endl;
   cout << endl;
 
-  bst.deleteNode(8);
-  bst.deleteNode(9);
-
-  cout << "UNIT TESTING - TREE OUT AFTER DOUBLE ROOT DELETION : " << endl;
-  cout << endl;
-
-  mainRoot = bst.getRoot();
-  bst.printPreorder(mainRoot);
-  cout << endl;
-  cout << endl;
+  portal1.close();
 
   return 0;
 }
