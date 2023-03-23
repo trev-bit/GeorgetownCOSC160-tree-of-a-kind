@@ -8,7 +8,7 @@ int main( int argc, const char* argv[] )
 
   //inputFile = argv[1];
 
-  string dummyplugFile = "p3_test0.txt";
+  string dummyplugFile = "p3_test3.txt";
 
   BinarySearchTree bst;
 
@@ -35,13 +35,13 @@ int main( int argc, const char* argv[] )
   bst.printPreorder(mainRoot);
   cout << endl;
   cout << endl;
-  
-  bst.deleteNode(13);
-  bst.insert(13);
 
-  cout << "UNIT TESTING - TREE OUT AFTER #13 DELETION & RE-INSERTION: " << endl;
+  bst.deleteNode(173);
+
+  cout << "UNIT TESTING - TREE OUT AFTER ROOT DELETION : " << endl;
   cout << endl;
 
+  mainRoot = bst.getRoot();
   bst.printPreorder(mainRoot);
   cout << endl;
   cout << endl;
