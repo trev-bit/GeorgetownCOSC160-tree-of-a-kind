@@ -82,8 +82,42 @@ int main( int argc, const char* argv[] )
       }
     }
   }
-  
 
+
+  while( portal1 >> slot )
+  {
+    if( slot == '$' )
+    {
+      break;
+    }
+    else if( isdigit(slot) )
+    {
+      one = slot;
+
+      fill = portal1.peek();
+
+      while( isdigit(fill) )
+      {
+        portal1 >> fill;
+        one = one + fill;
+        fill = portal1.peek();
+      }
+
+      value = stoi(one);
+      
+      cout << "DELETION TARGET = " << value << endl;
+      bst.deleteNode(value);
+    }
+  }
+
+  cout << "FINAL STATE - BINARY SEARCH TREE STRUCTURAL OUTPUT: " << endl;
+  cout << endl;
+
+  mainRoot = bst.getRoot();
+  bst.printPreorder(mainRoot);
+  cout << endl;
+  cout << endl;
+  
   portal1.close();
 
   return 0;
