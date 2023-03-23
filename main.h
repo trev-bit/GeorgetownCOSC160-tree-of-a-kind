@@ -26,5 +26,8 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include <ctype.h>
 
 #include "BinarySearchTree.h"
+
+using namespace std;
