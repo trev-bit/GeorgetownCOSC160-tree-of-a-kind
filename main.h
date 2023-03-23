@@ -27,6 +27,8 @@
 #include <fstream>
 #include <string>
 #include <ctype.h>
+#include <chrono>
+
 
 #include "BinarySearchTree.h"
 

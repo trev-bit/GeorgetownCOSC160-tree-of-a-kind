@@ -4,21 +4,19 @@
 int main( int argc, const char* argv[] )
 {
   string inputFile;
-
-  //inputFile = argv[1];
-
-  string dummyplugFile = "p3_test4.txt";
+  inputFile = argv[1];
 
   BinarySearchTree bst;
 
   cout << endl;
   
-  ifstream portal1( dummyplugFile );
+  ifstream portal1( inputFile );
   char slot;
   string one;
   int value;
   char fill;
 
+  auto bstStart = std::chrono::high_resolution_clock::now();
 
   while( portal1 >> slot)
   {
@@ -72,14 +70,7 @@ int main( int argc, const char* argv[] )
       }
 
       value = stoi(one);
-      if( bst.search(value) )
-      {
-        cout << value << " LOCATED." << endl;
-      }
-      else
-      {
-        cout << value << " NOT FOUND." << endl;
-      }
+      bst.search(value);
     }
   }
 
@@ -104,19 +95,29 @@ int main( int argc, const char* argv[] )
       }
 
       value = stoi(one);
-      
-      cout << "DELETION TARGET = " << value << endl;
-      bst.deleteNode(value);
+
+      if( bst.search(value) )
+      {
+        bst.deleteNode(value);
+      }
     }
   }
 
   cout << "FINAL STATE - BINARY SEARCH TREE STRUCTURAL OUTPUT: " << endl;
   cout << endl;
 
+  auto bstEnd = std::chrono::high_resolution_clock::now();
+
   mainRoot = bst.getRoot();
   bst.printPreorder(mainRoot);
   cout << endl;
   cout << endl;
+
+
+  auto bstTime = std::chrono::duration_cast<std::chrono::nanoseconds>(bstEnd - bstStart);
+
+  cout << "BST TRAVERSALS:  " << bst.getTraversalCount() << endl;
+  cout << "ELAPSED TIME:" << bstTime.count() << "nns" << endl;
   
   portal1.close();
 

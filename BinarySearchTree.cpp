@@ -4,7 +4,7 @@
 bstNode* BinarySearchTree::insert( bstNode* node, int data )
 {  
     traversalCount++;
-    
+
     if ( node == NULL )
     {
         bstNode* newNode = new bstNode(data);
@@ -35,7 +35,6 @@ bstNode* BinarySearchTree::findMinNode( bstNode* min )
     {
         min = min->left;
     }
-
     return min;
 }
 
@@ -64,6 +63,7 @@ bstNode* BinarySearchTree::deleteNode( bstNode *node, int data )
         if( !node->left )
         {
             bstNode* temp = node->right;
+            traversalCount++;
             delete node;
 
             return temp;
@@ -71,6 +71,7 @@ bstNode* BinarySearchTree::deleteNode( bstNode *node, int data )
         else if( !node->right )
         {
             bstNode* temp = node->left;
+            traversalCount++;
             delete node;
 
             return temp;
@@ -166,6 +167,10 @@ void BinarySearchTree::printPreorder( bstNode* node )
         cout << node->data;
         printPreorder(node->left);
         printPreorder(node->right);
+        if( (node->left && !node->right) || node->right && !node->left)
+        {
+            cout << "[]";
+        }
         cout << "]";
     }
     //
