@@ -4,7 +4,17 @@
 int main( int argc, const char* argv[] )
 {
   string inputFile;
-  inputFile = argv[1];
+  //inputFile = argv[1];
+
+  SplayTree plasma(9);
+
+  cout << "MAKEFILE TEST - EXPECTED 9: " << plasma.getTest() << endl;
+
+  cout << endl;
+
+
+/*
+
 
   BinarySearchTree bst;
 
@@ -42,7 +52,7 @@ int main( int argc, const char* argv[] )
     }
   }
 
-  cout << "FIRST STATE - BINARY SEARCH TREE STRUCTURE OUTPUT: " << endl;
+  cout << "FIRST STATE - BINARY SEARCH TREE STRUCTURE OUTPUT BELOW: " << endl;
   cout << endl;
 
   bstNode* mainRoot = bst.getRoot();
@@ -96,14 +106,14 @@ int main( int argc, const char* argv[] )
 
       value = stoi(one);
 
-      if( bst.search(value) )
-      {
-        bst.deleteNode(value);
-      }
+      
+      bst.deleteNode(value);
     }
   }
+    portal1.close();
 
-  cout << "FINAL STATE - BINARY SEARCH TREE STRUCTURAL OUTPUT: " << endl;
+
+  cout << "FINAL STATE - BINARY SEARCH TREE STRUCTURAL OUTPUT BELOW: " << endl;
   cout << endl;
 
   auto bstEnd = std::chrono::high_resolution_clock::now();
@@ -118,8 +128,9 @@ int main( int argc, const char* argv[] )
 
   cout << "BST TRAVERSALS:  " << bst.getTraversalCount() << endl;
   cout << "ELAPSED TIME:" << bstTime.count() << "nns" << endl;
-  
-  portal1.close();
+  cout << endl;
+
+  */
 
   return 0;
 }

@@ -31,5 +31,6 @@
 
 
 #include "BinarySearchTree.h"
+#include "SplayTree.h"
 
 using namespace std;
