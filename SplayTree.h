@@ -27,6 +27,7 @@ private:
 
     sNode* insert( sNode* node, int data );
     sNode* findMinNode( sNode* node );
+    sNode* findMaxNode( sNode* node );
     sNode* deleteNode( sNode* node, int data );
 
     void leftRotation( sNode* node );
@@ -35,6 +36,9 @@ private:
     sNode* getNode( int data );
     void splay( sNode* node );
     sNode* grabSearch( sNode* node, int data );
+
+    void split ( sNode* &x, sNode* &s, sNode* &t );
+    sNode* join( sNode* s, sNode* t );
 //
 public:
     SplayTree();

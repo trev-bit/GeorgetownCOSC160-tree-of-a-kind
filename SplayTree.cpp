@@ -1,6 +1,7 @@
 #include "SplayTree.h"
+ 
 
-sNode* SplayTree::insert(sNode* node, int data)
+sNode* SplayTree::insert( sNode* node, int data )
 {
     if ( node == NULL )
     {
@@ -33,6 +34,16 @@ sNode* SplayTree::findMinNode( sNode* min )
         min = min->left;
     }
     return min;
+}
+
+
+sNode *SplayTree::findMaxNode( sNode* max )
+{
+    while( max->left )
+    {
+        max = max->left;
+    }
+    return max;
 }
 
 
@@ -112,7 +123,7 @@ void SplayTree::leftRotation( sNode* node )
 }
 
 
-void SplayTree::rightRotation(sNode* node)
+void SplayTree::rightRotation( sNode* node )
 {
     sNode* orbit = node->left;
     node->left = orbit->right;
@@ -205,7 +216,7 @@ void SplayTree::splay( sNode *node )
     }
 }
 
-sNode* SplayTree::grabSearch(sNode* node, int data)
+sNode* SplayTree::grabSearch( sNode* node, int data )
 {
     if( !node || data == node->data )
     {
@@ -218,6 +229,45 @@ sNode* SplayTree::grabSearch(sNode* node, int data)
     }
 
     return grabSearch(node->right, data);
+}
+
+void SplayTree::split( sNode* &x, sNode* &s, sNode* &t )
+{
+    splay(x);
+
+    if ( x->right )
+    {
+        t = x->right;
+        t->parent = nullptr;
+    }
+    else
+    {
+        t = nullptr;
+    }
+
+    s = x;
+    s->right = nullptr;
+    x = nullptr;
+    //
+}
+
+sNode *SplayTree::join( sNode* s, sNode* t )
+{
+    if (!s) 
+    {
+        return t;
+    }
+
+    if (!t) 
+    {
+        return s;
+    }
+
+    sNode* x = findMaxNode(s);
+    splay(x);
+    x->right = t;
+    t->parent = x;
+    return x;
 }
 
 // END PRIVATE MEMBER FUNCTIONS
@@ -271,7 +321,7 @@ void SplayTree::insert( int data )
     //
 }
 
-bool SplayTree::search(int data)
+bool SplayTree::search( int data )
 {
     sNode* node = grabSearch(root, data);
 
