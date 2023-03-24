@@ -26,12 +26,18 @@ private:
     int traversalCount;
 
     sNode* insert( sNode* node, int data );
+    sNode* findMinNode( sNode* node );
+    sNode* deleteNode( sNode* node, int data );
 //
 public:
     SplayTree();
     sNode* getRoot() { return root; }
+    int getTraversalCount() { return traversalCount; } 
+
 
     void insert( int data );
+    sNode* deleteNode( int data );
+
 
     void printPreorder( sNode* node );
 //

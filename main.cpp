@@ -8,15 +8,27 @@ int main( int argc, const char* argv[] )
 
   SplayTree plasma;
 
+  plasma.insert(7);
+  plasma.insert(10);
+  plasma.insert(5);
   plasma.insert(9);
+
   sNode* toolRoot = plasma.getRoot();
 
-  cout << "SPLAY TREE UNIT TESTING - POST-INSERT TREE OUT:  " << endl;
+  cout << "SPLAY TREE UNIT TESTING - MULTI-INSERT TREE OUT:  " << endl;
   cout << endl;
 
   plasma.printPreorder(toolRoot);
   cout << endl;
   cout << endl;
+
+  plasma.deleteNode(7);
+
+  cout << "SPLAY TREE UNIT TESTING - ROOT DELETION TREE OUT:  " << endl;
+
+  plasma.printPreorder(toolRoot);
+  cout << endl;
+  cout << endl;  
 
 
 /*

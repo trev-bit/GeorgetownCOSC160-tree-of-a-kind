@@ -82,8 +82,8 @@ bstNode* BinarySearchTree::deleteNode( bstNode *node, int data )
 }
 
 
-// end of public member function implementation
-// begining of private member function implementation
+// end of private member function implementation
+// begining of public member function implementation
 
 
 BinarySearchTree::BinarySearchTree()

@@ -25,9 +25,68 @@ sNode *SplayTree::insert(sNode* node, int data)
     return node;
 }
 
+sNode* SplayTree::findMinNode( sNode* min )
+{        
+    while( min->left )
+    {
+        min = min->left;
+    }
+    return min;
+}
+
+
+sNode* SplayTree::deleteNode( sNode* node, int data )
+{
+    traversalCount++;
+
+    if( !node )
+    {
+        return nullptr;
+    }
+
+// IF break for clarity
+
+    if( data < node->data )
+    {
+        node->left = deleteNode(node->left, data);
+    }    
+    else if( data > node->data )
+    {
+        node->right = deleteNode(node->right, data);
+    }
+    else
+    {
+        if( !node->left )
+        {
+            sNode* temp = node->right;
+            delete node;
+
+            return temp;
+        }
+        else if( !node->right )
+        {
+            sNode* temp = node->left;
+            delete node;
+
+            return temp;
+        }
+
+        sNode* temp = findMinNode(node->right);
+        node->data = temp->data;
+        node->right = deleteNode(node->right, temp->data);
+    }
+
+    return node;
+}
+
+// END PRIVATE MEMBER FUNCTIONS
+//                              
+// BEGIN PUBLIC MEMBER FUNCTIONS
+
 SplayTree::SplayTree()
 {
     root = NULL;
+    traversalCount = 0;
 }
 
 void SplayTree::insert( int data )
@@ -47,6 +106,14 @@ void SplayTree::insert( int data )
         root->right = insert(root->right, data);
     }
     //
+}
+
+
+sNode* SplayTree::deleteNode( int data )
+{
+    root = deleteNode( root, data );
+
+    return root;
 }
 
 
