@@ -190,15 +190,15 @@ sNode* SplayTree::grabSearch( sNode* node, int data )
 
 void SplayTree::deleteNode( sNode* node, int data )
 {
-    sNode* x = nullptr;
-    sNode* t;
-    sNode* s;
+    sNode* anchor = nullptr;
+    sNode* link1;
+    sNode*link2;
 
     while ( node )
     {
         if( node->data == data )
         {
-            x = node;
+            anchor = node;
         }
 
         if ( node->data <= data )
@@ -211,66 +211,66 @@ void SplayTree::deleteNode( sNode* node, int data )
         }
     }
 
-    if( !x )
+    if( !anchor )
     {
         cout << "oops" << endl;
         return;
     }
 
-    split(x, s, t);
+    split(anchor,link2, link1);
 
-    if( s->left )
+    if(link2->left )
     {
-        s->left->parent = NULL;
+       link2->left->parent = NULL;
     }
 
-    root = join(s->left, t);
+    root = join(link2->left, link1);
 
-    delete(s);
+    delete(link2);
 
-    s = NULL;
+   link2 = NULL;
 //
 }
 
 
 
-void SplayTree::split( sNode* &x, sNode* &s, sNode* &t )
+void SplayTree::split( sNode* &anchor, sNode* &link2, sNode* &link1 )
 {
-    splay(x);
+    splay(anchor);
 
-    if ( x->right )
+    if ( anchor->right )
     {
-        t = x->right;
-        t->parent = nullptr;
+        link1= anchor->right;
+        link1->parent = nullptr;
     }
     else
     {
-        t = nullptr;
+        link1= nullptr;
     }
 
-    s = x;
-    s->right = nullptr;
-    x = nullptr;
+    link2 = anchor;
+    link2->right = nullptr;
+    anchor = nullptr;
     //
 }
 
-sNode *SplayTree::join( sNode* s, sNode* t )
+sNode *SplayTree::join( sNode* link2, sNode*link1)
 {
-    if (!s) 
+    if (!link2) 
     {
-        return t;
+        return link1;
     }
 
-    if (!t) 
+    if (!link1) 
     {
-        return s;
+        return link2;
     }
 
-    sNode* x = findMaxNode(s);
-    splay(x);
-    x->right = t;
-    t->parent = x;
-    return x;
+    sNode* anchor = findMaxNode(link2);
+    splay(anchor);
+    anchor->right = link2;
+    link2->parent = anchor;
+    return anchor;
 }
 
 // END PRIVATE MEMBER FUNCTIONS
