@@ -34,10 +34,9 @@ public:
     sNode* getRoot() { return root; }
     int getTraversalCount() { return traversalCount; } 
 
-
     void insert( int data );
+    bool search( int data );
     sNode* deleteNode( int data );
-
 
     void printPreorder( sNode* node );
 //

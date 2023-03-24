@@ -109,6 +109,31 @@ void SplayTree::insert( int data )
 }
 
 
+bool SplayTree::search( int data )
+{
+    sNode* node = root;
+
+    while( node )
+    {
+        traversalCount++;
+        if( data == node->data )
+        {
+            return true;
+        }
+        else if( data < node->data )
+        {
+            node = node->left;
+        }
+        else
+        {
+            node = node->right;
+        }
+    }
+
+    return false;
+}
+
+
 sNode* SplayTree::deleteNode( int data )
 {
     root = deleteNode( root, data );
