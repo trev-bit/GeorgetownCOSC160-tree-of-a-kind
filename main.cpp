@@ -6,21 +6,16 @@ int main( int argc, const char* argv[] )
   string inputFile;
   inputFile = argv[1];
 
-  /*
+  SplayTree unit_01;
+  sNode* dummyPlug = unit_01.getRoot();
 
-
-
-  cout << endl;
-  
-  ifstream portal1( inputFile );
+  ifstream portal( inputFile );
   char slot;
   string one;
   int value;
   char fill;
 
-  auto bstStart = std::chrono::high_resolution_clock::now();
-
-  while( portal1 >> slot)
+  while( portal >> slot)
   {
     if( slot == '$' )
     {
@@ -30,99 +25,31 @@ int main( int argc, const char* argv[] )
     {
       one = slot;
 
-      fill = portal1.peek();
+      fill = portal.peek();
 
       while( isdigit(fill) )
       {
-        portal1 >> fill;
+        portal >> fill;
         one = one + fill;
-        fill = portal1.peek();
+        fill = portal.peek();
       }
 
       value = stoi(one);
-      bst.insert(value);
+      unit_01.insert(value);
     }
   }
 
-  cout << "FIRST STATE - BINARY SEARCH TREE STRUCTURE OUTPUT BELOW: " << endl;
+  cout << "FIRST STATE - SPLAY TREE STRUCTURE OUTPUT BELOW: " << endl;
   cout << endl;
 
-  bstNode* mainRoot = bst.getRoot();
-  bst.printPreorder(mainRoot);
-  cout << endl;
-  cout << endl;
+  dummyPlug = unit_01.getRoot();
 
-  while( portal1 >> slot )
-  {
-    if( slot == '$' )
-    {
-      break;
-    }
-    else if( isdigit(slot) )
-    {
-      one = slot;
-
-      fill = portal1.peek();
-
-      while( isdigit(fill) )
-      {
-        portal1 >> fill;
-        one = one + fill;
-        fill = portal1.peek();
-      }
-
-      value = stoi(one);
-      bst.search(value);
-    }
-  }
-
-
-  while( portal1 >> slot )
-  {
-    if( slot == '$' )
-    {
-      break;
-    }
-    else if( isdigit(slot) )
-    {
-      one = slot;
-
-      fill = portal1.peek();
-
-      while( isdigit(fill) )
-      {
-        portal1 >> fill;
-        one = one + fill;
-        fill = portal1.peek();
-      }
-
-      value = stoi(one);
-
-      
-      bst.deleteNode(value);
-    }
-  }
-    portal1.close();
-
-
-  cout << "FINAL STATE - BINARY SEARCH TREE STRUCTURAL OUTPUT BELOW: " << endl;
-  cout << endl;
-
-  auto bstEnd = std::chrono::high_resolution_clock::now();
-
-  mainRoot = bst.getRoot();
-  bst.printPreorder(mainRoot);
+  unit_01.printPreorder(dummyPlug);
   cout << endl;
   cout << endl;
 
 
-  auto bstTime = std::chrono::duration_cast<std::chrono::nanoseconds>(bstEnd - bstStart);
-
-  cout << "BST TRAVERSALS:  " << bst.getTraversalCount() << endl;
-  cout << "ELAPSED TIME:" << bstTime.count() << "nns" << endl;
-  cout << endl;
-
-  */
+  /*
 
   BinarySearchTree unit_00;
   SplayTree unit_01;
@@ -173,7 +100,7 @@ int main( int argc, const char* argv[] )
   unit_00.printPreorder(rei);
   cout << endl;
   cout << endl;
-  
+
   unit_01.printPreorder(shinji);
   cout << endl;
   cout << endl;
@@ -246,6 +173,8 @@ int main( int argc, const char* argv[] )
   unit_01.printPreorder(shinji);
   cout << endl;
   cout << endl;
+
+  */
 
 
   return 0;

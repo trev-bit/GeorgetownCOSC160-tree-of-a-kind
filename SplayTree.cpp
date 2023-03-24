@@ -152,12 +152,17 @@ void SplayTree::printPreorder( sNode* node )
     {
         cout << "[";
         cout << node->data;
-        printPreorder(node->left);
-        printPreorder(node->right);
-        if( (node->left && !node->right) || node->right && !node->left)
+        if( node->right && !node->left )
         {
             cout << "[]";
         }
+        printPreorder(node->left);
+        if( node->left && !node->right )
+        {
+            cout << "[]";
+        }
+        printPreorder(node->right);
+        
         cout << "]";
     }
     //
