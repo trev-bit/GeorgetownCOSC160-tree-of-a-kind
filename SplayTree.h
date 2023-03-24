@@ -28,7 +28,6 @@ private:
     sNode* insert( sNode* node, int data );
     sNode* findMinNode( sNode* node );
     sNode* findMaxNode( sNode* node );
-    sNode* deleteNode( sNode* node, int data );
 
     void leftRotation( sNode* node );
     void rightRotation( sNode* node );
@@ -36,6 +35,7 @@ private:
     sNode* getNode( int data );
     void splay( sNode* node );
     sNode* grabSearch( sNode* node, int data );
+    void deleteNode( sNode* node, int data );
 
     void split ( sNode* &x, sNode* &s, sNode* &t );
     sNode* join( sNode* s, sNode* t );
@@ -49,7 +49,7 @@ public:
     bool search( int data );
 
     bool binarySearch( int data );
-    sNode* deleteNode( int data );
+    void deleteNode( int data );
 
     void printPreorder( sNode* node );
 //

@@ -37,6 +37,17 @@ int main( int argc, const char* argv[] )
   cout << endl;
   cout << endl;
 
+  unit_01.deleteNode(9);
+
+  cout << "SPLAY SEARCH(#1)" << endl;
+  cout << "TREE OUT BELOW: " << endl;
+  cout << endl;
+
+  dummyPlug = unit_01.getRoot();
+  unit_01.printPreorder(dummyPlug);
+  cout << endl;
+  cout << endl;
+
 
 /*
   ifstream portal( inputFile );

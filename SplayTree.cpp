@@ -47,51 +47,6 @@ sNode *SplayTree::findMaxNode( sNode* max )
 }
 
 
-sNode* SplayTree::deleteNode( sNode* node, int data )
-{
-    traversalCount++;
-
-    if( !node )
-    {
-        return nullptr;
-    }
-
-// IF break for clarity
-
-    if( data < node->data )
-    {
-        node->left = deleteNode(node->left, data);
-    }    
-    else if( data > node->data )
-    {
-        node->right = deleteNode(node->right, data);
-    }
-    else
-    {
-        if( !node->left )
-        {
-            sNode* temp = node->right;
-            delete node;
-
-            return temp;
-        }
-        else if( !node->right )
-        {
-            sNode* temp = node->left;
-            delete node;
-
-            return temp;
-        }
-
-        sNode* temp = findMinNode(node->right);
-        node->data = temp->data;
-        node->right = deleteNode(node->right, temp->data);
-    }
-
-    return node;
-}
-
-
 void SplayTree::leftRotation( sNode* node )
 {
     sNode* orbit = node->right;
@@ -216,6 +171,7 @@ void SplayTree::splay( sNode *node )
     }
 }
 
+
 sNode* SplayTree::grabSearch( sNode* node, int data )
 {
     if( !node || data == node->data )
@@ -230,6 +186,53 @@ sNode* SplayTree::grabSearch( sNode* node, int data )
 
     return grabSearch(node->right, data);
 }
+
+
+void SplayTree::deleteNode( sNode* node, int data )
+{
+    sNode* x = nullptr;
+    sNode* t;
+    sNode* s;
+
+    while ( node )
+    {
+        if( node->data == data )
+        {
+            x = node;
+        }
+
+        if ( node->data <= data )
+        {
+            node = node->right;
+        }
+        else
+        {
+            node = node->left;
+        }
+    }
+
+    if( !x )
+    {
+        cout << "oops" << endl;
+        return;
+    }
+
+    split(x, s, t);
+
+    if( s->left )
+    {
+        s->left->parent = NULL;
+    }
+
+    root = join(s->left, t);
+
+    delete(s);
+
+    s = NULL;
+//
+}
+
+
 
 void SplayTree::split( sNode* &x, sNode* &s, sNode* &t )
 {
@@ -359,11 +362,9 @@ bool SplayTree::binarySearch( int data )
 }
 
 
-sNode* SplayTree::deleteNode( int data )
+void SplayTree::deleteNode( int data )
 {
-    root = deleteNode( root, data );
-
-    return root;
+    deleteNode( root, data );
 }
 
 
