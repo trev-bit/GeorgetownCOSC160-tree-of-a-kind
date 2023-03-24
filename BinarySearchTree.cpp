@@ -11,7 +11,6 @@ bstNode* BinarySearchTree::insert( bstNode* node, int data )
     }
 
     traversalCount++;
- 
     
     if ( data > node->data )
     {
@@ -46,7 +45,6 @@ bstNode* BinarySearchTree::deleteNode( bstNode *node, int data )
     {
         return nullptr;
     }
-
 
 // IF break for clarity
 
@@ -183,5 +181,4 @@ void BinarySearchTree::orderedPrint( bstNode* parent )
     }
     //
 }
-
 

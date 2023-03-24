@@ -6,10 +6,16 @@ int main( int argc, const char* argv[] )
   string inputFile;
   //inputFile = argv[1];
 
-  SplayTree plasma(9);
+  SplayTree plasma;
 
-  cout << "MAKEFILE TEST - EXPECTED 9: " << plasma.getTest() << endl;
+  plasma.insert(9);
+  sNode* toolRoot = plasma.getRoot();
 
+  cout << "SPLAY TREE UNIT TESTING - POST-INSERT TREE OUT:  " << endl;
+  cout << endl;
+
+  plasma.printPreorder(toolRoot);
+  cout << endl;
   cout << endl;
 
 
