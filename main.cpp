@@ -4,11 +4,41 @@
 int main( int argc, const char* argv[] )
 {
   string inputFile;
-  inputFile = argv[1];
+  // inputFile = argv[1];
 
   SplayTree unit_01;
   sNode* dummyPlug = unit_01.getRoot();
 
+  for( int i = 0; i < 10; i++ )
+  {
+    unit_01.insert(i);
+  }
+
+  cout << "SPLAY TREE UNIT TESTING..." << endl;
+  cout << endl;
+
+  cout << "SPLAY #1-10 INSERTION" << endl;
+  cout << "TREE OUT BELOW: " << endl;
+  cout << endl;
+
+  dummyPlug = unit_01.getRoot();
+  unit_01.printPreorder(dummyPlug);
+  cout << endl;
+  cout << endl;
+
+  unit_01.search(1);
+
+  cout << "SPLAY SEARCH(#1)" << endl;
+  cout << "TREE OUT BELOW: " << endl;
+  cout << endl;
+
+  dummyPlug = unit_01.getRoot();
+  unit_01.printPreorder(dummyPlug);
+  cout << endl;
+  cout << endl;
+
+
+/*
   ifstream portal( inputFile );
   char slot;
   string one;
@@ -49,7 +79,7 @@ int main( int argc, const char* argv[] )
   cout << endl;
 
 
-  /*
+  
 
   BinarySearchTree unit_00;
   SplayTree unit_01;
