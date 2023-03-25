@@ -4,93 +4,7 @@
 int main( int argc, const char* argv[] )
 {
   string inputFile;
-  // inputFile = argv[1];
-
-  SplayTree unit_01;
-  sNode* dummyPlug = unit_01.getRoot();
-
-  for( int i = 0; i < 10; i++ )
-  {
-    unit_01.insert(i);
-  }
-
-  cout << "SPLAY TREE UNIT TESTING..." << endl;
-  cout << endl;
-
-  cout << "SPLAY #1-10 INSERTION" << endl;
-  cout << "TREE OUT BELOW: " << endl;
-  cout << endl;
-
-  dummyPlug = unit_01.getRoot();
-  unit_01.printPreorder(dummyPlug);
-  cout << endl;
-  cout << endl;
-
-  unit_01.search(1);
-
-  cout << "SPLAY SEARCH(#1)" << endl;
-  cout << "TREE OUT BELOW: " << endl;
-  cout << endl;
-
-  dummyPlug = unit_01.getRoot();
-  unit_01.printPreorder(dummyPlug);
-  cout << endl;
-  cout << endl;
-
-  unit_01.deleteNode(9);
-
-  cout << "SPLAY SEARCH(#1)" << endl;
-  cout << "TREE OUT BELOW: " << endl;
-  cout << endl;
-
-  dummyPlug = unit_01.getRoot();
-  unit_01.printPreorder(dummyPlug);
-  cout << endl;
-  cout << endl;
-
-
-/*
-  ifstream portal( inputFile );
-  char slot;
-  string one;
-  int value;
-  char fill;
-
-  while( portal >> slot)
-  {
-    if( slot == '$' )
-    {
-      break;
-    }
-    else if( isdigit(slot) )
-    {
-      one = slot;
-
-      fill = portal.peek();
-
-      while( isdigit(fill) )
-      {
-        portal >> fill;
-        one = one + fill;
-        fill = portal.peek();
-      }
-
-      value = stoi(one);
-      unit_01.insert(value);
-    }
-  }
-
-  cout << "FIRST STATE - SPLAY TREE STRUCTURE OUTPUT BELOW: " << endl;
-  cout << endl;
-
-  dummyPlug = unit_01.getRoot();
-
-  unit_01.printPreorder(dummyPlug);
-  cout << endl;
-  cout << endl;
-
-
-  
+  inputFile = argv[1];
 
   BinarySearchTree unit_00;
   SplayTree unit_01;
@@ -132,15 +46,19 @@ int main( int argc, const char* argv[] )
     }
   }
 
-  cout << "FIRST STATE - SPLAY TREE STRUCTURE OUTPUT BELOW: " << endl;
+  cout << "FIRST STATE - BINARY SEARCH TREE STRUCTURE OUTPUT BELOW: " << endl;
   cout << endl;
 
   rei = unit_00.getRoot();
-  shinji = unit_01.getRoot();
 
   unit_00.printPreorder(rei);
   cout << endl;
   cout << endl;
+
+  cout << "FIRST STATE - SPLAY TREE STRUCTURE OUTPUT BELOW: " << endl;
+  cout << endl;
+
+  shinji = unit_01.getRoot();
 
   unit_01.printPreorder(shinji);
   cout << endl;
@@ -167,9 +85,14 @@ int main( int argc, const char* argv[] )
 
       value = stoi(one);
       unit_00.search(value);
+        cout << "{HERE}" << endl;
+
       unit_01.search(value);
+        cout << "{HERE}" << endl;
+
     }
   }
+
 
   while( portal >> slot )
   {
@@ -204,19 +127,24 @@ int main( int argc, const char* argv[] )
   auto bstEnd = std::chrono::high_resolution_clock::now();
   auto splayEnd = std::chrono::high_resolution_clock::now();
 
+
+  cout << "FINAL STATE - BINARY SEARCH TREE STRUCTURE OUTPUT BELOW: " << endl;
+  cout << endl;
+
   rei = unit_00.getRoot();
-  shinji = unit_01.getRoot();
 
   unit_00.printPreorder(rei);
   cout << endl;
   cout << endl;
 
+  cout << "FINAL STATE - SPLAY SEARCH TREE STRUCTURE OUTPUT BELOW: " << endl;
+  cout << endl;
+
+  shinji = unit_01.getRoot();
+
   unit_01.printPreorder(shinji);
   cout << endl;
   cout << endl;
-
-  */
-
 
   return 0;
 }

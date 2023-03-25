@@ -3,7 +3,7 @@
 
 sNode* SplayTree::insert( sNode* node, int data )
 {
-    if ( node == NULL )
+    if ( node == nullptr )
     {
         sNode* newNode = new sNode(data);
         newNode->depth = newNode->depth + 1;
@@ -37,11 +37,11 @@ sNode* SplayTree::findMinNode( sNode* min )
 }
 
 
-sNode *SplayTree::findMaxNode( sNode* max )
+sNode* SplayTree::findMaxNode( sNode* max )
 {
-    while( max->left )
+    while( max->right )
     {
-        max = max->left;
+        max = max->right;
     }
     return max;
 }
@@ -80,10 +80,11 @@ void SplayTree::leftRotation( sNode* node )
 
 void SplayTree::rightRotation( sNode* node )
 {
-    sNode* orbit = node->left;
+    sNode* orbit = new sNode(0);
+    orbit = node->left;
     node->left = orbit->right;
 
-    if( orbit->right )
+    if( orbit->right != nullptr )
     {
         orbit->right->parent = node;
     }
@@ -160,31 +161,41 @@ void SplayTree::splay( sNode *node )
         } // zig-zag step variation
         else if( node == node->parent->left && node->parent == node->parent->parent->right )
         {
-            leftRotation(node->parent);
             rightRotation(node->parent);
+            leftRotation(node->parent);
+
         }
         else
         {
-            rightRotation(node->parent);
             leftRotation(node->parent);
+            rightRotation(node->parent);
         }
     }
 }
 
-
+ 
 sNode* SplayTree::grabSearch( sNode* node, int data )
 {
-    if( !node || data == node->data )
+    if( !node ) 
+    {
+        return nullptr;
+    }
+
+    if( data == node->data )
     {
         return node;
     }
 
-    if( data < node->data )
+    if( data < node->data && node->left )
     {
         return grabSearch(node->left, data);
     }
+    else if( node->right )
+    {
+        return grabSearch(node->right, data);
+    }
 
-    return grabSearch(node->right, data);
+    return nullptr;
 }
 
 
@@ -324,17 +335,16 @@ void SplayTree::insert( int data )
     //
 }
 
-bool SplayTree::search( int data )
+sNode* SplayTree::search( int data )
 {
     sNode* node = grabSearch(root, data);
 
     if( node )
     {
         splay(node);
-        return true;
     }
 
-    return false;
+    return node;
 }
 
 bool SplayTree::binarySearch( int data )

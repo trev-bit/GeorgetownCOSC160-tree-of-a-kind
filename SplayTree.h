@@ -16,7 +16,7 @@ struct sNode
     sNode* left;
     sNode* right;
 
-    sNode(int x) : data(x), depth(0), parent(NULL), left(NULL), right(NULL) {}
+    sNode(int x) : data(x), depth(0), parent(nullptr), left(nullptr), right(nullptr) {}
 };
 
 class SplayTree
@@ -46,7 +46,7 @@ public:
     int getTraversalCount() { return traversalCount; } 
 
     void insert( int data );
-    bool search( int data );
+    sNode* search( int data );
 
     bool binarySearch( int data );
     void deleteNode( int data );
